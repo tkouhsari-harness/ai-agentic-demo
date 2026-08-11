@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Fixed
+- Dashboard quick-action cards no longer rotate/offset; they wrap cleanly on narrow viewports
+
 ### Changed
 - Migrated application from Node.js/Express to Python 3.12/Flask while preserving all demo functionality and intentional vulnerabilities (#27)
 - Runtime commands updated to Python toolchain: `pip install`, `pytest`, `python -m app.server` (#27)
