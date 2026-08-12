@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: harnessbank-demo
-  namespace: harnessbank-demo
+  namespace: {{ .Values.namespace }}
   labels:
     app: harnessbank-demo
 spec:

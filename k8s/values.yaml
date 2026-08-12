@@ -3,7 +3,7 @@
 # <+pipeline.executionId> changes on every run so Kubernetes rolls the pod
 
 name: harnessbank-demo
-namespace: harnessbank-demo
+namespace: {{ .Values.namespace }}
 image: <+artifact.image>
 rolloutId: <+pipeline.executionId>
 replicas: 1
