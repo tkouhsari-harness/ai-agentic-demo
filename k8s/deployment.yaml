@@ -25,6 +25,8 @@ spec:
         harness.io/rollout-id: "{{ .Values.rolloutId }}"
 
     spec:
+      imagePullSecrets:
+        - name: harness-registry-secret
       containers:
         - name: {{ .Values.name }}
           image: {{ .Values.image }}
