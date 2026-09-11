@@ -8,6 +8,14 @@ def test_transfer_page_returns_200(client):
     assert res.status_code == 200
 
 
+def test_dashboard_quick_action_buttons_are_not_rotated(client):
+    css = client.get("/styles.css").get_data(as_text=True)
+    assert ".quick-actions" in css
+    assert "grid-template-columns" in css
+    assert "rotate(" not in css
+    assert "translateY(" not in css
+
+
 def test_dashboard_pay_bill_action_links_to_bill_payment_page(client):
     res = client.get("/")
     text = res.get_data(as_text=True)
