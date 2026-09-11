@@ -1,3 +1,9 @@
+from pathlib import Path
+
+
+STYLES_PATH = Path(__file__).resolve().parents[1] / "app/static/styles.css"
+
+
 def test_dashboard_returns_200(client):
     res = client.get("/")
     assert res.status_code == 200
@@ -24,3 +30,14 @@ def test_pay_bill_returns_200(client):
 def test_login_returns_200(client):
     res = client.get("/login")
     assert res.status_code == 200
+
+
+def test_quick_action_buttons_are_aligned(client):
+    css = STYLES_PATH.read_text()
+    html = client.get("/").get_data(as_text=True)
+
+    assert 'class="quick-actions"' in html
+    assert "transform: rotate(" not in css
+    assert "translateY(" not in css
+    assert "display: grid" in css
+    assert "grid-template-columns: repeat(4, minmax(0, 1fr))" in css
