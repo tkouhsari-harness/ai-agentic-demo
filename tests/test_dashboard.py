@@ -24,3 +24,14 @@ def test_pay_bill_returns_200(client):
 def test_login_returns_200(client):
     res = client.get("/login")
     assert res.status_code == 200
+
+
+def test_dashboard_quick_action_cards_stay_aligned(client):
+    css = client.get("/styles.css").get_data(as_text=True)
+    assert "grid-template-columns" in css
+    assert "rotate(" not in css
+    assert "min-width: 160px" not in css
+
+    html = client.get("/").get_data(as_text=True)
+    assert 'class="quick-actions"' in html
+    assert 'class="action-btn"' in html
